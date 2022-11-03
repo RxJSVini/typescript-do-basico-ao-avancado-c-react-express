@@ -1,34 +1,67 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import './App.css'
+import React from "react";
+import { AppContext, Conext,  } from "./Contexts/AppContext";
+// 6 - Hook useState
+import { States } from "./components/States";
+// 5 - Desestruturing
+import { Desestruturando, Category } from "./components/Desestruturando";
 
-function App() {
-  const [count, setCount] = useState(0)
+// 4 - Importação de components
+import FirstComponents from "./components/FirstComponents";
+
+
+// 8 - Types
+
+type textOrNull = string | null;
+type fixed = "Isso" | "Ou" | "Aquilo";
+
+
+const App:React.FC = () =>{
+  // 1 - variaveis
+
+  const name:string ="Vinicius";
+  const age:number = 25;
+  const isWorking:boolean = true;
+
+  // 2 - funções
+
+  const useGreeting = (name:string):string =>{
+      return `Olá, ${name}`;
+  }
+
+  let contextValue = {
+    language:"Javascript",
+    framework:"Express",
+    projects:2,
+  }
 
   return (
-    <div className="App">
+    
+    <AppContext.Provider value={contextValue}>
+      <h1>Typescript com React</h1>
+      <h2>Nome:{name}</h2>
+      <h2>Idade:{age}</h2>
+      {isWorking && (
+        <div>
+            <h3>Está trabalhando.</h3>
+        </div>
+      )}
+      <h3>{useGreeting(name)}</h3>
+      <FirstComponents tech="Reactjs e Typescript"/>
+
       <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src="/vite.svg" className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+          <Desestruturando 
+              title="Primeiro Post" 
+              content="Loren Ipsum, Loren Ipsum, Loren Ipsum, Loren Ipsum, Loren Ipsum, Loren Ipsum, Loren Ipsum, Loren Ipsum"
+              tags={["#react", "#typescript"]}
+              category={Category.TS}   
+          />
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </div>
-  )
+     <br/>
+
+      <States/>
+     <Conext/>
+    </AppContext.Provider>
+  );
 }
 
-export default App
+export default App;
