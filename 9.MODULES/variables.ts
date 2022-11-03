@@ -1,0 +1,1 @@
+export const x = "exportando uma variavel, durante a declaração dela, dessa forma, ela já nasce exportada para uso";
