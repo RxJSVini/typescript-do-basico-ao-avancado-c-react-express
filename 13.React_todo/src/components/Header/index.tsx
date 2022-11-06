@@ -1,15 +1,13 @@
-import React from 'react'
+import React from 'react';
+import styles from  "./Header.module.css";
 
 type Props = {}
 
 const Header = (props: Props) => {
   return (
-    <div>
-        <header>
-            <h1>React + TS Todo</h1>
-        </header>
-        <h1>Conteudo......</h1>
-    </div>
+    <header className={styles.header}>
+        <h1>React + TS Todo</h1>
+    </header>
   )
 }
 
