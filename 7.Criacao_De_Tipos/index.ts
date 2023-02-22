@@ -129,3 +129,4 @@ type a1 = "testando";
 type a2 = "union";
 
 type a3 = `${a1}` | `${a2}`;
+

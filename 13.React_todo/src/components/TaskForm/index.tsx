@@ -1,28 +1,40 @@
-import React, { FormEvent, useState, ChangeEvent } from "react";
+import React, { FormEvent, useState, ChangeEvent, useEffect } from "react";
 import { ITask } from "../../interfaces/ITask";
 import styles from "./TaskForm.module.css";
 
 interface IProps {
   btnText: string;
   taskList:ITask[];
-  setTaskList:React.Dispatch<React.SetStateAction<ITask[]>>;
+  setTaskList?:React.Dispatch<React.SetStateAction<ITask[]>>;
+  task?:ITask | null;
+  handleUpdate?:() =>void;
 }
 
-export const TaskForm = ({ btnText , taskList, setTaskList}: IProps) => {
+export const TaskForm = ({ btnText , taskList, setTaskList, task}: IProps) => {
   const [id, setId] = useState<number>(0);
   const [title, setTitle] = useState<string>("");
   const [difficulty, setDifficulty] = useState<number>(0);
+
+  useEffect(() =>{
+    setId(Number(task?.id));
+    setTitle(String(task?.title));
+    setDifficulty(Number(task?.difficulty));
+
+  }, [task])
+
 
   const addTaskHander = (e:FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     const id = Math.floor(Math.random() * 1000);
-    const newTask:ITask = {id, title, difficulty}
+    const newTask:ITask = {id, title, difficulty};
+    
+    
     setTaskList!([...taskList, newTask]);
     setTitle("");
     setDifficulty(0);
 
-    console.log(taskList);
+
   };
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
