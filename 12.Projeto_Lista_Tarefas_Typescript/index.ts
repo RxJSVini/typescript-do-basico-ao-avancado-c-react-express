@@ -6,7 +6,7 @@ const savedTaskList:(string | null) = localStorage.getItem("@task_list");
 let _tarefas:string[] = savedTaskList !== null && JSON.parse(savedTaskList) || [];
 
 
-const listTasks = () =>{
+const listTasks = (): void =>{
     listElement.innerHTML=``;
 
     _tarefas.map((item, index) =>{
@@ -31,7 +31,7 @@ const listTasks = () =>{
 }
 listTasks();
 
-const addTask = () =>{
+function addTask(): false | undefined {
     if(inputElement.value === ''){
         alert('Digite alguma tarefa!');
         return false;
@@ -45,14 +45,13 @@ const addTask = () =>{
     }
 }
 
-const taskDelete =  (index:number) => {
+function taskDelete(index:number): void {
     _tarefas.splice(index, 1);
     listTasks();
     addToDateLocalStorage();
-
 }
 
-const addToDateLocalStorage = () =>{
+function addToDateLocalStorage(): void {
     localStorage.setItem('@task_list', JSON.stringify(_tarefas));
 }
 

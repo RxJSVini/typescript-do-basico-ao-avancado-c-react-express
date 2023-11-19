@@ -87,4 +87,3 @@ const produto = {
     }
 };
 produto.validarProduto();
-//# sourceMappingURL=tipos.js.map
