@@ -1,0 +1,1 @@
+(()=>{"use strict";$("p").append("<strong>Hello</strong>")})();
